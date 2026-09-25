@@ -6,5 +6,12 @@ cube = {
     "L" : ["O"] * 9,
     "R" : ["R"] * 9
 }
-for face in cube:
-    print(face,cube[face])
+for k,v in cube.items():
+    print(k)
+    print(v)
+
+clockwise_rotated = [
+    6,3,0,
+    7,4,1,
+    8,5,2
+] 

@@ -1,5 +1,24 @@
 face_names = ["U","D","F","B","L","R"]
-cube = []
+cube = [
+    [[],
+     [],
+     []],
+    [[],
+     [],
+     []],
+    [[],
+     [],
+     []],
+    [[],
+     [],
+     []],
+    [[],
+     [],
+     []],
+    [[],
+     [],
+     []]
+]
 input_vaild = True
 fixed_cube = {
     "U" : ["W"],
@@ -14,7 +33,7 @@ clockwise_rotated = [
     [7,4,1],
     [8,5,2]
 ]  
-def rotate_clockwise(face):
+def rotate_clockwise2D(face):
     clockwise_rotated = [
         [face[2][0],face[1][0],face[0][0]],
         [face[2][1],face[1][1],face[0][1]],
@@ -39,32 +58,32 @@ regular_rotated = [
     [6,7,8]
 ]
 
-for q in range(1):
+for q in range(6):
     print(face_names[q])
     for a in range(3):
         scrambled_face = input()
         for z in scrambled_face:
             if len(scrambled_face) == 3:
-                cube.append(z)
+                cube[q][a].append(z)
                 continue
             else:
                 print("invaild input")
                 input_vaild = False
-    break
-cube_face = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8]
+                exit()
+        
+def move_U(old_cube):
+
+    new_face = rotate_clockwise2D(old_cube[0])
+    old_cube[0] = new_face
+    old_faces = [
+    old_cube[2][0],#front
+    old_cube[3][0],#back
+    old_cube[4][0],#left
+    old_cube[5][0]#right
 ]
-def rotate_clockwise(face):
-    clockwise_rotated = [
-        [face[2][0],face[1][0],face[0][0]],
-        [face[2][1],face[1][1],face[0][1]],
-        [face[2][2],face[1][2],face[0][2]]
-    ]
-    return clockwise_rotated
-
-
-print(rotate_counterclockwise(cube_face))
-print(rotate_clockwise(cube_face))
-print(cube)
+    old_cube[2][0] = old_faces[3]
+    old_cube[3][0] = old_faces[2]
+    old_cube[4][0] = old_faces[0]
+    old_cube[5][0] = old_faces[1]
+    return old_cube
+print(move_U(cube))

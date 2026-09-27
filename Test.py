@@ -74,7 +74,6 @@ for q in range(6):
                 exit()
         
 def move_U_clockwise(old_cube):
-
     new_face = rotate_clockwise2D(old_cube[0])
     old_cube[0] = new_face
     old_faces = [
@@ -88,9 +87,7 @@ def move_U_clockwise(old_cube):
     old_cube[4][0] = old_faces[0]
     old_cube[5][0] = old_faces[1]
     return old_cube
-
 def move_U_counterclockwise(old_cube):
-
     new_face = rotate_counterclockwise2D(old_cube[0])
     old_cube[0] = new_face
     old_faces = [
@@ -105,10 +102,43 @@ def move_U_counterclockwise(old_cube):
     old_cube[5][0] = old_faces[0]
     return old_cube
 
+def move_D_clockwise(old_cube):
+    new_face = rotate_clockwise2D(old_cube[1])
+    old_cube[1] = new_face
+    old_faces = [
+    old_cube[2][2],#front
+    old_cube[3][2],#back
+    old_cube[4][2],#left
+    old_cube[5][2]#right
+]
+    old_cube[2][2] = old_faces[2]
+    old_cube[3][2] = old_faces[3]
+    old_cube[4][2] = old_faces[1]
+    old_cube[5][2] = old_faces[0]
+    return old_cube
+face_names = ["U","D","F","B","L","R"]
+def move_D_counterclockwise(old_cube):
+    new_face = rotate_counterclockwise2D(old_cube[1])
+    old_cube[1] = new_face
+    old_faces = [
+    old_cube[2][2],#front
+    old_cube[3][2],#back
+    old_cube[4][2],#left
+    old_cube[5][2]#right
+]
+    old_cube[2][2] = old_faces[3]
+    old_cube[3][2] = old_faces[2]
+    old_cube[4][2] = old_faces[0]
+    old_cube[5][2] = old_faces[1]
+    return old_cube
+
 original_cube = copy.deepcopy(cube)
+
 move_U_clockwise(cube)
 move_U_counterclockwise(cube)
 if cube == original_cube:
     print("YES")
 else:
     print("NO")
+print(move_D_clockwise(cube))
+print(move_D_counterclockwise(cube))
